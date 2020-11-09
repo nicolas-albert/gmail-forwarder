@@ -143,6 +143,14 @@ public class App {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new App().run();
+		App app = new App();
+		for (;;) {
+			try {
+				app.run();
+			} catch (Exception e) {
+				e.printStackTrace();
+				app.log("Exception catched, listening again");
+			}
+		}
 	}
 }
