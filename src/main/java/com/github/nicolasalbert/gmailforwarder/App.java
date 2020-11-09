@@ -36,18 +36,18 @@ public class App {
 		log("Initializing...");
 
 		username = System.getenv("USERNAME");
-		if (username == null || username.isBlank()) {
+		if (username == null || username.isEmpty()) {
 			throw new Exception("USERNAME not defined");
 		}
 		log("User used: ", username);
 
 		password = System.getenv("PASSWORD");
-		if (password == null || password.isBlank()) {
+		if (password == null || password.isEmpty()) {
 			throw new Exception("PASSWORD not defined");
 		}
 
 		String to = System.getenv("TO");
-		if (to == null || to.isBlank()) {
+		if (to == null || to.isEmpty()) {
 			throw new Exception("TO not defined");
 		}
 
@@ -55,20 +55,20 @@ public class App {
 		log("Forward to: ", to);
 
 		folder = System.getenv("FOLDER");
-		if (folder == null || folder.isBlank()) {
+		if (folder == null || folder.isEmpty()) {
 			folder = "Inbox";
 		}
 
 		log("Use folder: ", folder);
 
 		String t_sender = System.getenv("SENDER");
-		if (t_sender != null && !t_sender.isBlank()) {
+		if (t_sender != null && !t_sender.isEmpty()) {
 			sender = Pattern.compile(t_sender).matcher("");
 			log("Forward if sender matches: ", t_sender);
 		}
 
 		String t_subject = System.getenv("SUBJECT");
-		if (t_subject != null && !t_subject.isBlank()) {
+		if (t_subject != null && !t_subject.isEmpty()) {
 			subject = Pattern.compile(t_subject).matcher("");
 			log("Forward if subject matches: ", t_subject);
 		}
