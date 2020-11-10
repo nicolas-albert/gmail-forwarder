@@ -23,5 +23,5 @@ application {
 }
 
 startScripts {
-    defaultJvmOpts = ['-Xmx32m']
+    defaultJvmOpts = ['-Xms16m', '-Xmx16m']
 }
