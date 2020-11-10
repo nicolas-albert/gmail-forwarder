@@ -12,6 +12,7 @@ import jakarta.mail.Address;
 import jakarta.mail.Folder;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
+import jakarta.mail.Provider;
 import jakarta.mail.Session;
 import jakarta.mail.Store;
 import jakarta.mail.Transport;
@@ -23,6 +24,7 @@ import jakarta.mail.internet.MimeMessage.RecipientType;
 
 public class App {
 	Session session;
+	Provider provider;
 	InternetAddress addr[];
 
 	String username;
@@ -81,6 +83,7 @@ public class App {
 		props.setProperty("mail.smtp.auth", "true");
 
 		session = Session.getDefaultInstance(props, null);
+		provider = new com.sun.mail.gimap.GmailSSLProvider();
 	}
 
 	private void log(String... message) {
@@ -102,7 +105,7 @@ public class App {
 	}
 
 	public void run() throws MessagingException, IOException {
-		try (Store store = session.getStore("gimap")) {
+		try (Store store = session.getStore(provider)) {
 			store.connect(username, password);
 			try (IMAPFolder folder = (IMAPFolder) store.getFolder(this.folder)) {
 				folder.open(Folder.READ_WRITE);
@@ -143,7 +146,6 @@ public class App {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new com.sun.mail.gimap.GmailProvider().toString(); // for graalvm
 		App app = new App();
 		for (;;) {
 			try {
