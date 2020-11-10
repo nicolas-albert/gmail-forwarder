@@ -21,3 +21,7 @@ dependencies {
 application {
     mainClassName = 'com.github.nicolasalbert.gmailforwarder.App'
 }
+
+startScripts {
+    defaultJvmOpts = ['-Xmx32m']
+}
