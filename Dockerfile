@@ -1,13 +1,15 @@
-FROM openjdk:15-alpine
+FROM openjdk:11
+RUN apt update -y && apt install -y build-essential zlib1g-dev && rm -rf /var/lib/apt/lists/*
 COPY src /opt/src
 COPY gradle /opt/gradle
 COPY build.gradle /opt/
 COPY gradlew /opt/
 COPY settings.gradle /opt/
 WORKDIR /opt/
-RUN sh gradlew --no-daemon installDist
+RUN sh gradlew --no-daemon nativeImage
+CMD ["/opt/build/graal/gmail-forwarder"]
 
-FROM openjdk:15-alpine
-COPY --from=0 /opt/build/install/gmail-forwarder /opt/gmail-forwarder
-WORKDIR /opt/gmail-forwarder
-CMD ["sh", "bin/gmail-forwarder"]
+#FROM alpine:latest
+#COPY --from=0 /opt/build/graal/gmail-forwarder /opt/gmail-forwarder
+#WORKDIR /opt
+#CMD ["gmail-forwarder"]

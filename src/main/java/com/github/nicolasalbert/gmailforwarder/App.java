@@ -143,6 +143,7 @@ public class App {
 	}
 
 	public static void main(String[] args) throws Exception {
+		new com.sun.mail.gimap.GmailProvider().toString(); // for graalvm
 		App app = new App();
 		for (;;) {
 			try {

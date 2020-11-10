@@ -1,10 +1,11 @@
 plugins {
     id 'java'
     id 'application'
+    id 'com.palantir.graal' version '0.7.2'
 }
 
-sourceCompatibility = '8'
-targetCompatibility = '8'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 repositories {
     jcenter()
@@ -24,4 +25,12 @@ application {
 
 startScripts {
     defaultJvmOpts = ['-Xms16m', '-Xmx16m']
+}
+
+graal {
+    javaVersion '11'
+    mainClass 'com.github.nicolasalbert.gmailforwarder.App'
+    outputName 'gmail-forwarder'
+    option '--no-fallback'
+    //option '--static'
 }
