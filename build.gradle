@@ -32,5 +32,5 @@ graal {
     mainClass 'com.github.nicolasalbert.gmailforwarder.App'
     outputName 'gmail-forwarder'
     option '--no-fallback'
-    //option '--static'
+    option '--static'
 }

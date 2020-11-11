@@ -9,7 +9,7 @@ WORKDIR /opt/
 RUN sh gradlew --no-daemon nativeImage
 CMD ["/opt/build/graal/gmail-forwarder"]
 
-#FROM alpine:latest
-#COPY --from=0 /opt/build/graal/gmail-forwarder /opt/gmail-forwarder
-#WORKDIR /opt
-#CMD ["gmail-forwarder"]
+FROM alpine:latest
+COPY --from=0 /opt/build/graal/gmail-forwarder /opt/gmail-forwarder
+WORKDIR /opt
+CMD ["gmail-forwarder"]
