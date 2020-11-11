@@ -9,8 +9,8 @@ WORKDIR /opt/
 RUN sh gradlew --no-daemon nativeImage
 CMD ["/opt/build/graal/gmail-forwarder"]
 
-FROM frolvlad/alpine-glibc:latest
-RUN apk add --no-cache ca-certificates
+FROM alpine:latest
+RUN apk add --no-cache ca-certificates libstdc++
 COPY --from=0 /opt/build/graal/gmail-forwarder /opt/gmail-forwarder
 WORKDIR /opt
 CMD ["./gmail-forwarder"]
