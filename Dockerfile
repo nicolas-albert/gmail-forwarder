@@ -1,5 +1,5 @@
 FROM openjdk:11
-RUN apt update -y && apt install -y build-essential zlib1g-dev musl-tools && rm -rf /var/lib/apt/lists/*
+RUN apt update -y && apt install -y build-essential zlib1g-dev musl-tools && rm -rf /var/lib/apt/lists/* && ln -s /lib/libz.so.1 /lib/libz.so
 COPY src /opt/src
 COPY gradle /opt/gradle
 COPY build.gradle /opt/
