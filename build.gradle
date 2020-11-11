@@ -33,4 +33,5 @@ graal {
     outputName 'gmail-forwarder'
     option '--no-fallback'
     option '--static'
+    option '--libc=musl'
 }
