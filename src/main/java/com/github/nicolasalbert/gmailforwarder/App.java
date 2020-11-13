@@ -75,6 +75,8 @@ public class App {
 
 		Properties props = System.getProperties();
 		props.setProperty("mail.store.protocol", "gimap");
+//		props.setProperty("mail.gimap.connectiontimeout", "1000");
+		props.setProperty("mail.gimap.timeout", "120000");
 		props.setProperty("mail.smtp.starttls.enable", "true");
 		props.setProperty("mail.smtp.host", "smtp.gmail.com");
 		props.setProperty("mail.smtp.port", "587");
